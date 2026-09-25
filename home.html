@@ -1,5 +1,5 @@
 <html>
-    <head></head>
+    <head><link rel="stylesheet" href="home.css"></head>
     <body>
         <div id="container">
         <h2>Registration Form</h2>
@@ -18,11 +18,60 @@
             <div id="passwordError" name="error"></div>
             <label for="">Date of Birth</label>
             <input type="date" id="dob" placeholder="Enter date of birth">
-            <div id="dobError" name="error"></div>
-            <button id="switch">Create</button> <br>
-            <label for="">Already have an account?</label>
-            <button id="switch">Login</button>
+            <div id="dobError" name="error"></div><br>
+            <button type="submit" id="switch">Create</button>
+            <div class="form-row">
+            <label>Don't have an account?</label>
+            <a href="login.html">Login</a>
+            </div>
         </form>
         </div>
     </body>
+    <script>
+        document.getElementById("name").addEventListener("keyup",function(){
+        let name=this.value;
+        if(name.length<3){
+            document.getElementById("nameError").innerHTML="Name must be at least 3 characters long";
+        } else {
+            document.getElementById("nameError").innerHTML="Valid name";
+            document.getElementById("nameError").className="success";
+        }});
+        document.getElementById("username").addEventListener("keyup",function(){
+        let username=this.value;
+        if(username.length<3){
+            document.getElementById("usernameError").innerHTML="Username must be at least 3 characters long";
+        } else {
+            document.getElementById("usernameError").innerHTML="Valid username";
+            document.getElementById("usernameError").className="success";
+        }});
+        document.getElementById("email").addEventListener("keyup",function(){
+        let email=this.value;
+        let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailPattern.test(email)){
+            document.getElementById("emailError").innerHTML="Invalid email format";
+        } else {
+            document.getElementById("emailError").innerHTML="Valid email";
+            document.getElementById("emailError").className="success";
+        }});
+        document.getElementById("password").addEventListener("keyup",function(){
+        let password=this.value;
+        let passwordPattern=/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+        if(!passwordPattern.test(password)){
+            document.getElementById("passwordError").innerHTML="Password must include uppercase, lowercase, number, symbol, and be at least 8 characters long";
+            document.getElementById("passwordError").className="error";
+        } else {
+            document.getElementById("passwordError").innerHTML="Strong password";
+            document.getElementById("passwordError").className="success";
+        }});
+        document.getElementById("dob").addEventListener("change",function(){
+        let dob=this.value;
+        let today=new Date();
+        let birthDate=new Date(dob);
+        if(birthDate < 2008-01-01){
+            document.getElementById("dobError").innerHTML="Your under age";
+        } else {
+            document.getElementById("dobError").innerHTML="Valid date of birth";
+            document.getElementById("dobError").className="success";
+        }});
+    </script>
 </html>

@@ -68,15 +68,6 @@ button {
   margin-top: -6px;
   margin-bottom: 8px;
 }
-
-.success {
-  color: green;
-  font-size: 12px;
-  min-height: 16px;
-  margin-top: -6px;
-  margin-bottom: 8px;
-}
-
 .form-row {
   display: flex;
   align-items: center;
